@@ -19,15 +19,24 @@ class ItemAdapter(private val context: Context,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        // create a new view
+        val adapterLayout = LayoutInflater.from(parent.context)
+            .inflate(R.layout.list_item, parent, false)
+
         return ItemViewHolder(adapterLayout)
     }
 
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         holder.textView.text = context.resources.getString(item.stringResourceId)
         holder.imageView.setImageResource(item.imageResourceId)
     }
-    override fun getItemCount() = dataset.size
 
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     */
+    override fun getItemCount() = dataset.size
 }
